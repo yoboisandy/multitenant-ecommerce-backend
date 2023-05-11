@@ -1,0 +1,15 @@
+<?php
+
+namespace App\Services;
+
+use App\Repositories\$MODEL$Repository;
+
+class $MODEL$Service extends BaseService
+{
+    protected $$MODEL_UC$Repository;
+
+    public function __construct($MODEL$Repository $$MODEL_UC$Repository)
+    {
+        $this->$MODEL_UC$Repository = $$MODEL_UC$Repository;
+    }
+}

@@ -1,0 +1,15 @@
+<?php
+
+namespace App\Repositories;
+
+use App\Models\$MODEL$;
+
+class $MODEL$Repository
+{
+    protected $$MODEL_UC$;
+
+    public function __construct($MODEL$ $$MODEL_UC$)
+    {
+        $this->$MODEL_UC$ = $$MODEL_UC$;
+    }
+}
