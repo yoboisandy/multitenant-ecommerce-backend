@@ -17,7 +17,7 @@ class CustomExceptionHandler extends Handler
 
         if ($exception instanceof ModelNotFoundException) {
             $modelName = strtolower(class_basename($exception->getModel()));
-            $response['message'] = "Requested " . $modelName ?? 'resource' . "  not found";
+            $response['message'] = "Requested " . $modelName ?? 'resource' . " not found";
         }
 
         if ($exception instanceof ValidationException) {
