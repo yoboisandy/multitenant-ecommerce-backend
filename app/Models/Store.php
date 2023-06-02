@@ -20,4 +20,9 @@ class Store extends Model
         'subdomain',
         'email_token',
     ];
+
+    public function storeCategory()
+    {
+        return $this->belongsTo(StoreCategory::class);
+    }
 }
