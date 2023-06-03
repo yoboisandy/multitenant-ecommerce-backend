@@ -1,15 +1,18 @@
 <?php
 
+namespace App\Exceptions;
+
+use Throwable;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Foundation\Exceptions\Handler;
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Validation\ValidationException;
 
-class CustomExceptionHandler extends Handler
+class CustomExceptionHandler extends ExceptionHandler
 {
     public function render($request, Throwable $exception)
     {
         $message = $exception->getMessage() ?? 'Internal Server Error';
-        $code = $exception->getCode() ?? 500;
+        $code = empty($exception->getCode()) ? 500 : $exception->getCode();
         $response = [
             'success' => false,
             'message' => $message,
@@ -17,7 +20,7 @@ class CustomExceptionHandler extends Handler
 
         if ($exception instanceof ModelNotFoundException) {
             $modelName = strtolower(class_basename($exception->getModel()));
-            $response['message'] = "Requested " . $modelName ?? 'resource' . " not found";
+            $response['message'] = "Requested " . ($modelName ?? 'resource') . " not found";
         }
 
         if ($exception instanceof ValidationException) {

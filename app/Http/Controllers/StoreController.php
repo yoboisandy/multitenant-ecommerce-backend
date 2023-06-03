@@ -28,4 +28,11 @@ class StoreController extends Controller
 
         return ApiResponse::success([], "Store verified successfully.");
     }
+
+    public function checkStoreReady(Store $store)
+    {
+        $url = $this->storeService->checkStoreReady($store);
+
+        return ApiResponse::success(["url" => $url], "Store is ready.");
+    }
 }

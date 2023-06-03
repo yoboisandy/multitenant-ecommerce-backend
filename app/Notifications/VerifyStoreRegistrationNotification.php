@@ -37,6 +37,7 @@ class VerifyStoreRegistrationNotification extends Notification implements Should
     {
         $url = config('app.frontend_url') . '/verify-store/' . $this->store->id . '/' . $this->store->email_token;
         return (new MailMessage())
+        
             ->subject('Verify your Store - Mecomm')
             ->view('emails.verify_store_registration_mail', ['url' => $url]);
     }
