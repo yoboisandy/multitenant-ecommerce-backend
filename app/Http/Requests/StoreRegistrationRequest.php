@@ -31,4 +31,12 @@ class StoreRegistrationRequest extends FormRequest
             'subdomain' => ['required', 'string', 'unique:stores', 'max:255'],
         ];
     }
+
+    public function prepareForValidation(): void
+    {
+        $this->merge([
+            'user_name' => ucwords($this->first_name . ' ' . $this->last_name),
+            'subdomain' => strtolower($this->subdomain),
+        ]);
+    }
 }

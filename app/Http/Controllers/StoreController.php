@@ -20,6 +20,6 @@ class StoreController extends Controller
 
         $store = $this->storeService->createStore($data);
 
-        return ApiResponse::success(new StoreResource($store), "Store created successfully.");
+        return ApiResponse::success(new StoreResource($store), "Store created successfully. Please check your email to verify your account.");
     }
 }

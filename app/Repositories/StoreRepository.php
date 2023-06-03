@@ -15,6 +15,7 @@ class StoreRepository
 
     public function createStore($data)
     {
+        $data['password'] = bcrypt($data['password']);
         return $this->store->create($data);
     }
 }
