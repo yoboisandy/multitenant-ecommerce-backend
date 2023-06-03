@@ -19,6 +19,7 @@ class Store extends Model
         'store_category_id',
         'subdomain',
         'email_token',
+        'email_verified_at',
     ];
 
     public function storeCategory()

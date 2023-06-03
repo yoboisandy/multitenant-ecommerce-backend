@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\StoreController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,7 +16,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::post('/auth/login', [AuthController::class, 'login']);
-Route::post('stores', [\App\Http\Controllers\StoreController::class, 'store']);
+
+// registration routes
+Route::post('stores', [StoreController::class, 'store']);
+Route::get('/stores/{store}/verify/{token}', [StoreController::class, 'verifyStoreRegistration'])->name('stores.verify');
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/auth/logout', [AuthController::class, 'logout']);

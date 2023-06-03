@@ -18,4 +18,9 @@ class StoreRepository
         $data['password'] = bcrypt($data['password']);
         return $this->store->create($data);
     }
+
+    public function getStoreById($id)
+    {
+        return $this->store->findOrFail($id);
+    }
 }
