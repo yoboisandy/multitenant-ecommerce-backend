@@ -24,12 +24,12 @@
                             <table cellpadding="0" cellspacing="0" border="0" width="100%">
                                 <tr>
                                     <td style="text-align: center; padding-bottom: 20px">
-                                        <img src="{{ asset('assets/images/logo.svg') }}" alt="Logo"
+                                        <img src="{{ asset('assets/images/whiteLogo.svg') }}" alt="Logo"
                                             style="
                           display: block;
                           margin: 0 auto;
-                          width: 103px;
-                          height: 35px;
+                          width: 200px;
+                          height: 70px;
                         " />
                                     </td>
                                 </tr>
