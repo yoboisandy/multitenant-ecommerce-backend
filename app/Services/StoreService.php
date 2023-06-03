@@ -71,7 +71,7 @@ class StoreService extends BaseService
 
         [$protocol, $domain] = explode('://', config('app.frontend_url'));
 
-        $url = $protocol . '://' . $tenant->id . '.' . $domain;
+        $url = $protocol . '://' . $tenant->id . '.' . $domain . '/login';
 
         return $url;
     }
