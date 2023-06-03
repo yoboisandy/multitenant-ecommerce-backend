@@ -21,6 +21,7 @@ return new class extends Migration
             $table->foreignUuid('store_category_id')->constrained('store_categories');
             $table->string('subdomain')->unique();
             $table->string('email_token')->nullable();
+            $table->timestamp('email_verified_at')->nullable();
             $table->timestamps();
         });
     }
