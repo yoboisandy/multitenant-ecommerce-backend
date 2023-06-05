@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\StoreCategoryController;
 use App\Http\Controllers\StoreController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,6 +22,7 @@ Route::post('/auth/login', [AuthController::class, 'login']);
 Route::post('stores', [StoreController::class, 'store']);
 Route::get('/stores/{store}/verify/{token}', [StoreController::class, 'verifyStoreRegistration']);
 Route::get('/stores/{store}/check-ready', [StoreController::class, 'checkStoreReady']);
+Route::get('/store-categories', [StoreCategoryController::class, 'index']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/auth/logout', [AuthController::class, 'logout']);
