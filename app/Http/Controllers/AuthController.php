@@ -19,7 +19,7 @@ class AuthController extends Controller
         return ApiResponse::success([
             'token' =>  $this->authService->login($request->email, $request->password),
             'user' => $this->userService->getUserById(Auth::id()),
-        ]);
+        ], "Logged in successfully");
     }
 
     public function logout()
