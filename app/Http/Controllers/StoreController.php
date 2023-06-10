@@ -35,4 +35,11 @@ class StoreController extends Controller
 
         return ApiResponse::success(["url" => $url], "Store is ready.");
     }
+
+    public function getStores()
+    {
+        $stores = $this->storeService->getAllStores();
+
+        return $stores;
+    }
 }

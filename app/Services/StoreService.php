@@ -75,4 +75,9 @@ class StoreService extends BaseService
 
         return $url;
     }
+
+    public function getAllStores()
+    {
+        return $this->storeRepository->getStores();
+    }
 }

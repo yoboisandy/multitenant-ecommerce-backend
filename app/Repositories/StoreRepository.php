@@ -23,4 +23,9 @@ class StoreRepository
     {
         return $this->store->findOrFail($id);
     }
+
+    public function getStores()
+    {
+        return $this->store->with('storeCategory')->get();
+    }
 }
