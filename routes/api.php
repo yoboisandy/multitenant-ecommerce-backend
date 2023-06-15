@@ -29,7 +29,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('me', [AuthController::class, 'me']);
 
     Route::middleware(['role:admin'])->group(function () {
-        // admin routes here
         Route::get('get-stores', [StoreController::class, 'getStores']);
     });
 });

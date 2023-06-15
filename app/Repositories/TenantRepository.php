@@ -22,4 +22,9 @@ class TenantRepository
     {
         return $this->tenant->findOrFail($id);
     }
+
+    public function getAllTenantsWithInIds($ids)
+    {
+        return $this->tenant->whereIn('id', $ids)->get();
+    }
 }

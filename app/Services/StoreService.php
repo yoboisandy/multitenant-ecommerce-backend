@@ -9,6 +9,7 @@ use App\Repositories\StoreRepository;
 use Exception;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Str;
+use Stancl\Tenancy\Database\Models\Domain;
 
 class StoreService extends BaseService
 {
@@ -78,6 +79,19 @@ class StoreService extends BaseService
 
     public function getAllStores()
     {
-        return $this->storeRepository->getStores();
+        $stores =  $this->storeRepository->getStores();
+
+        $tenants = $this->tenantService->getAllTenantsWithInIds($stores->pluck('subdomain')->toArray());
+
+        $stores = $stores->map(function ($store) use ($tenants) {
+            $tenant = $tenants->where('id', $store->subdomain)->first();
+            $store->url = $tenant?->domains?->first()?->domain;
+            $store->plan = $tenant?->plan;
+            if ($tenant?->ready) {
+                return $store;
+            }
+        })->filter();
+
+        return $stores;
     }
 }

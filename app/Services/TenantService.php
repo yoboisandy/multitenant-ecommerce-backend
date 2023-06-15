@@ -22,4 +22,9 @@ class TenantService extends BaseService
     {
         return $this->tenantRepository->getTenantById($id);
     }
+
+    public function getAllTenantsWithInIds($ids)
+    {
+        return $this->tenantRepository->getAllTenantsWithInIds($ids);
+    }
 }

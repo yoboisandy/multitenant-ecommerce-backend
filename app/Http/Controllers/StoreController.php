@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreRegistrationRequest;
+use App\Http\Resources\AdminStoreResource;
 use App\Http\Resources\StoreResource;
 use App\Libs\ApiResponse;
 use App\Models\Store;
@@ -40,6 +41,6 @@ class StoreController extends Controller
     {
         $stores = $this->storeService->getAllStores();
 
-        return $stores;
+        return ApiResponse::success(AdminStoreResource::collection($stores));
     }
 }
