@@ -15,6 +15,7 @@ return new class extends Migration
             $table->uuid()->primary();
             $table->string('name');
             $table->text('description')->nullable();
+            $table->foreignUuid('category_id')->constrained('categories')->cascadeOnDelete();
             $table->decimal('selling_price');
             $table->decimal('cost_price');
             $table->decimal('crossed_price')->nullable();
