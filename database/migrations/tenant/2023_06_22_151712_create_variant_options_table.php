@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('variant_options', function (Blueprint $table) {
-            $table->uuid()->primary();
+            $table->uuid('id')->primary();
             $table->foreignUuid('variant_id')->constrained('variants')->cascadeOnDelete();
             $table->string('name');
             $table->decimal('selling_price');
