@@ -17,4 +17,9 @@ class CategoryService extends BaseService
     {
         return $this->categoryRepository->getCategories();
     }
+
+    public function createCategory($data)
+    {
+        return $this->categoryRepository->createCategory($data);
+    }
 }

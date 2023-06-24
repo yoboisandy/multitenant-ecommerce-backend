@@ -15,6 +15,11 @@ class CategoryRepository
 
     public function getCategories()
     {
-        return $this->category->all();
+        return $this->category->select('id', 'name', 'description', 'image')->get();
+    }
+
+    public function createCategory($data)
+    {
+        return $this->category->create($data)->only('id', 'name', 'description', 'image');
     }
 }

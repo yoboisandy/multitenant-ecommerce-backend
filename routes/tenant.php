@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
+use Spatie\Permission\Contracts\Role;
 use Stancl\Tenancy\Middleware\InitializeTenancyByDomain;
 use Stancl\Tenancy\Middleware\InitializeTenancyByPath;
 use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
@@ -33,5 +34,9 @@ Route::group([
     Route::middleware('auth:sanctum')->group(function () {
         Route::post('/auth/logout', [AuthController::class, 'logout']);
         Route::get('me', [AuthController::class, 'me']);
+
+        Route::middleware('role:owner')->group(function () {
+            Route::post('categories', [\App\Http\Controllers\CategoryController::class, 'store']);
+        });
     });
 });
