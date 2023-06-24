@@ -22,4 +22,15 @@ class CategoryRepository
     {
         return $this->category->create($data)->only('id', 'name', 'description', 'image');
     }
+
+    public function updateCategory($data, $id)
+    {
+        $this->category->where('id', $id)->update($data);
+        return $this->category->find($id)->only('id', 'name', 'description', 'image');
+    }
+
+    public function deleteCategory($id)
+    {
+        return $this->category->where('id', $id)->delete();
+    }
 }

@@ -28,4 +28,21 @@ class CategoryController extends Controller
             "Category created successfully."
         );
     }
+
+    public function update(CategoryRequest $request, Category $category)
+    {
+        return ApiResponse::success(
+            $this->categoryService->updateCategory($request->validated(), $category->id),
+            "Category updated successfully."
+        );
+    }
+
+    public function destroy(Category $category)
+    {
+        $this->categoryService->deleteCategory($category->id);
+        return ApiResponse::success(
+            [],
+            "Category deleted successfully."
+        );
+    }
 }

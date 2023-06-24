@@ -37,6 +37,8 @@ Route::group([
 
         Route::middleware('role:owner')->group(function () {
             Route::post('categories', [\App\Http\Controllers\CategoryController::class, 'store']);
+            Route::put('categories/{category}', [\App\Http\Controllers\CategoryController::class, 'update']);
+            Route::delete('categories/{category}', [\App\Http\Controllers\CategoryController::class, 'destroy']);
         });
     });
 });

@@ -22,4 +22,14 @@ class CategoryService extends BaseService
     {
         return $this->categoryRepository->createCategory($data);
     }
+
+    public function updateCategory($data, $id)
+    {
+        return $this->categoryRepository->updateCategory($data, $id);
+    }
+
+    public function deleteCategory($id)
+    {
+        return $this->categoryRepository->deleteCategory($id);
+    }
 }
