@@ -13,8 +13,13 @@ return new class extends Migration
     {
         Schema::create('variants', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignUuid('product_id')->constrained('products')->cascadeOnDelete();
+            $table->foreignUuid('option_id')->constrained('options')->cascadeOnDelete();
             $table->string('name');
+            $table->decimal('selling_price');
+            $table->decimal('cost_price');
+            $table->decimal('crossed_price')->nullable();
+            $table->integer('quantity');
+            $table->string('sku')->nullable();
             $table->timestamps();
         });
     }
