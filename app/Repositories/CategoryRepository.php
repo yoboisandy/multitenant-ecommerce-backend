@@ -15,7 +15,7 @@ class CategoryRepository
 
     public function getCategories()
     {
-        return $this->category->select('id', 'name', 'description', 'image')->get();
+        return $this->category->select('id', 'name', 'description', 'image')->latest()->get();
     }
 
     public function createCategory($data)
@@ -32,5 +32,10 @@ class CategoryRepository
     public function deleteCategory($id)
     {
         return $this->category->where('id', $id)->delete();
+    }
+
+    public function getCategoryById($id)
+    {
+        return $this->category->findOrFail($id);
     }
 }

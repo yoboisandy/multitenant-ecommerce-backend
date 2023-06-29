@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\Base64Image;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CategoryRequest extends FormRequest
@@ -24,7 +25,7 @@ class CategoryRequest extends FormRequest
         return [
             'name' => 'required',
             'description' => 'nullable',
-            'image' => 'nullable',
+            'image' => $this->method() === 'POST' ? ['required', new Base64Image] : 'nullable',
         ];
     }
 }

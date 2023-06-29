@@ -41,7 +41,7 @@ class CategoryController extends Controller
     {
         $this->categoryService->deleteCategory($category->id);
         return ApiResponse::success(
-            [],
+            $category,
             "Category deleted successfully."
         );
     }
