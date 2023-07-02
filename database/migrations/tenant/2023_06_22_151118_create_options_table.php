@@ -15,7 +15,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->foreignUuid('product_id')->constrained('products')->cascadeOnDelete();
             $table->string('name');
-            $table->json('options');
+            $table->text('options');
             $table->timestamps();
         });
     }

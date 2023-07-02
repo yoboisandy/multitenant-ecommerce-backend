@@ -16,10 +16,10 @@ return new class extends Migration
             $table->string('name');
             $table->text('description')->nullable();
             $table->foreignUuid('category_id')->constrained('categories')->cascadeOnDelete();
-            $table->decimal('selling_price');
-            $table->decimal('cost_price');
+            $table->decimal('selling_price')->nullable();
+            $table->decimal('cost_price')->nullable();
             $table->decimal('crossed_price')->nullable();
-            $table->integer('quantity');
+            $table->integer('quantity')->default(0);
             $table->string('sku')->nullable();
             $table->string('status')->default('active');
             $table->timestamps();
