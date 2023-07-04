@@ -14,6 +14,7 @@ class Product extends Model
     [
         'name',
         'description',
+        'category_id',
         'selling_price',
         'cost_price',
         'crossed_price',
@@ -21,4 +22,24 @@ class Product extends Model
         'sku',
         'status',
     ];
+
+    public function options()
+    {
+        return $this->hasMany(Option::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    public function variants()
+    {
+        return $this->hasMany(Variant::class);
+    }
+
+    public function product_images()
+    {
+        return $this->hasMany(ProductImage::class);
+    }
 }

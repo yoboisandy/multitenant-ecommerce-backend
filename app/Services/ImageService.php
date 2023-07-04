@@ -30,9 +30,12 @@ class ImageService
     {
         if ($file) {
             if (filter_var($file, FILTER_VALIDATE_URL)) {
+                // check if $file is an external url then remove it
                 $file = explode('storage/', $file)[1];
+                if ($file && Storage::disk('public')->exists($file)) {
+                    Storage::disk('public')->delete($file);
+                }
             }
-            Storage::disk('public')->delete($file);
         }
 
         return true;

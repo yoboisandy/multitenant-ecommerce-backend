@@ -39,6 +39,10 @@ Route::group([
             Route::post('categories', [\App\Http\Controllers\CategoryController::class, 'store']);
             Route::put('categories/{category}', [\App\Http\Controllers\CategoryController::class, 'update']);
             Route::delete('categories/{category}', [\App\Http\Controllers\CategoryController::class, 'destroy']);
+
+            // product
+            Route::post('products', [\App\Http\Controllers\ProductController::class, 'save']);
+            Route::get('products', [\App\Http\Controllers\ProductController::class, 'getAllProducts']);
         });
     });
 });

@@ -16,4 +16,16 @@ class Option extends Model
         'options',
         'product_id',
     ];
+
+    public function getOptionsAttribute($value)
+    {
+        if (!$value) return [];
+        return explode(',', $value);
+    }
+
+    public function setOptionsAttribute($value)
+    {
+        if (!count($value)) return $this->attributes['options'] = null;
+        $this->attributes['options'] = implode(',', $value);
+    }
 }
