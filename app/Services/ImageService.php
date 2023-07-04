@@ -9,6 +9,9 @@ class ImageService
 {
     public static function uploadImage($file, $path = "/")
     {
+        if (filter_var($file, FILTER_VALIDATE_URL)) {
+            return $file;
+        }
         $data = $file;
         list($type, $data) = explode(';', $data);
         list(, $data) = explode(',', $data);
