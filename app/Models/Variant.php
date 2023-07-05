@@ -13,7 +13,7 @@ class Variant extends Model
     protected $fillable =
     [
         'name',
-        'option_id',
+        'product_id',
         'selling_price',
         'cost_price',
         'crossed_price',
