@@ -37,6 +37,6 @@ class ProductRepository
 
     public function getAllProducts()
     {
-        return $this->product->with('options', 'variants', 'product_images')->get();
+        return $this->product->with('options', 'variants', 'product_images', 'category')->get();
     }
 }
