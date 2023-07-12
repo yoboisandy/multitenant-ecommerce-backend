@@ -50,9 +50,10 @@ class ProductService extends BaseService
             $product->variants()->createMany($data['variants']);
 
             foreach ($data['images'] as $image) {
-                $image = ImageService::uploadImage($image, 'products');
+                $image = ImageService::uploadImage($image->image, 'products');
                 $product->product_images()->create([
-                    'image' => $image
+                    'image' => $image,
+                    'variant_id' => $image->variant_id ?? null,
                 ]);
             }
 
