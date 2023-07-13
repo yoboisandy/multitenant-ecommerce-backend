@@ -47,13 +47,14 @@ class ProductService extends BaseService
 
             $product->options()->createMany($data['options']);
 
-            $product->variants()->createMany($data['variants']);
+            $productVariants = $product->variants()->createMany($data['variants']);
 
+            
             foreach ($data['images'] as $image) {
-                $image = ImageService::uploadImage($image->image, 'products');
+                $uploadedImage = ImageService::uploadImage($image["image"], 'products');
                 $product->product_images()->create([
-                    'image' => $image,
-                    'variant_id' => $image->variant_id ?? null,
+                    'image' => $uploadedImage,
+                    'variant_id' => ($image["variant"]) ? $productVariants->where('name', $image["variant"])->where('product_id', $product->id)->first()?->id : null,
                 ]);
             }
 

@@ -44,7 +44,9 @@ class ProductRequest extends FormRequest
             'variants.*.quantity' => 'nullable|numeric',
             'variants.*.sku' => 'nullable|string',
             'images' => 'nullable|array',
-            'images.*' => ['required', 'string', new Base64Image()],
+            'images.*' => ['array'],
+            'images.*.image' => ['required', new Base64Image()],
+            'images.*.variant' => 'nullable|string',
         ];
     }
 }
