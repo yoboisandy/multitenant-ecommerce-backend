@@ -32,7 +32,6 @@ class ProductController extends Controller
 
     public function deleteProduct($id)
     {
-        $this->productService->deleteProduct($id);
-        return ApiResponse::success([], "Product deleted successfully.");
+        return ApiResponse::success($this->productService->deleteProduct($id), "Product deleted successfully.");
     }
 }
