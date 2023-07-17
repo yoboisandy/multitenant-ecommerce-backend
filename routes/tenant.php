@@ -44,6 +44,7 @@ Route::group([
             Route::post('products', [\App\Http\Controllers\ProductController::class, 'save']);
             Route::get('products', [\App\Http\Controllers\ProductController::class, 'getAllProducts']);
             Route::get('products/{id}', [\App\Http\Controllers\ProductController::class, 'getProduct']);
+            Route::delete('products/{id}', [\App\Http\Controllers\ProductController::class, 'deleteProduct']);
         });
     });
 });

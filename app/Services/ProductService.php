@@ -71,4 +71,13 @@ class ProductService extends BaseService
     {
         return $this->productRepository->find($id);
     }
+
+    public function deleteProduct($id)
+    {
+        return $this->withTransaction(
+            function () use ($id) {
+                return $this->productRepository->deleteProduct($id);
+            }
+        );
+    }
 }

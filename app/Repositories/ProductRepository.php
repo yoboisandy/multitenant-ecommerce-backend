@@ -45,4 +45,13 @@ class ProductRepository
 
         return $products->get();
     }
+
+    public function deleteProduct($id)
+    {
+        $product = $this->product->findOrFail($id);
+        $product->options()->delete();
+        $product->variants()->delete();
+        $product->product_images()->delete();
+        return $product->delete();
+    }
 }
