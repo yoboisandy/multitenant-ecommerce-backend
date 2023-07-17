@@ -32,11 +32,17 @@ class ProductRepository
 
     public function find($id)
     {
-        return $this->product->findOrFail($id);
+        return $this->product->with('options', 'variants', 'product_images', 'category')->findOrFail($id);
     }
 
-    public function getAllProducts()
+    public function getAllProducts($status)
     {
-        return $this->product->with('options', 'variants', 'product_images', 'category')->get();
+        $products = $this->product->with('options', 'variants', 'product_images', 'category')->latest();
+
+        if ($status) {
+            $products = $products->where('status', $status);
+        }
+
+        return $products->get();
     }
 }

@@ -14,13 +14,19 @@ class ProductController extends Controller
     {
     }
 
-    public function getAllProducts()
+    public function getAllProducts(Request $request)
     {
-        return ApiResponse::success(ProductResource::collection($this->productService->getAllProducts()), "Products fetched successfully.");
+        $status = $request->status ?? null;
+        return ApiResponse::success(ProductResource::collection($this->productService->getAllProducts($status)), "Products fetched successfully.");
     }
 
     public function save(ProductRequest $request)
     {
-        return ApiResponse::success($this->productService->save($request->validated()), "Product saved successfully.");
+        return ApiResponse::success($this->productService->save($request->validated(), !empty($request->id)), "Product saved successfully.");
+    }
+
+    public function getProduct($id)
+    {
+        return ApiResponse::success(new ProductResource($this->productService->getProduct($id)), "Product fetched successfully.");
     }
 }

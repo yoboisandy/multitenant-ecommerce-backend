@@ -44,17 +44,17 @@ class ProductService extends BaseService
                     'status' => $data['status'],
                 ]);
             }
-
+            if (!empty($data['options']))
             $product->options()->createMany($data['options']);
 
+            // if (!empty($data['variants']))
             $productVariants = $product->variants()->createMany($data['variants']);
 
-            
             foreach ($data['images'] as $image) {
                 $uploadedImage = ImageService::uploadImage($image["image"], 'products');
                 $product->product_images()->create([
                     'image' => $uploadedImage,
-                    'variant_id' => ($image["variant"]) ? $productVariants->where('name', $image["variant"])->where('product_id', $product->id)->first()?->id : null,
+                    'variant_id' => isset($image["variant"]) ? $productVariants->where('name', $image["variant"])->where('product_id', $product->id)->first()?->id : null,
                 ]);
             }
 
@@ -62,8 +62,13 @@ class ProductService extends BaseService
         });
     }
 
-    public function getAllProducts()
+    public function getAllProducts($status = null)
     {
-        return $this->productRepository->getAllProducts();
+        return $this->productRepository->getAllProducts($status);
+    }
+
+    public function getProduct($id)
+    {
+        return $this->productRepository->find($id);
     }
 }
