@@ -23,6 +23,13 @@ class Product extends Model
         'status',
     ];
 
+    protected $casts =
+    [
+        'selling_price' => 'float',
+        'cost_price' => 'float',
+        'crossed_price' => 'float',
+    ];
+
     public function options()
     {
         return $this->hasMany(Option::class);

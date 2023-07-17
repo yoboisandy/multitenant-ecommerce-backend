@@ -20,4 +20,11 @@ class Variant extends Model
         'quantity',
         'sku',
     ];
+
+    protected $casts =
+    [
+        'selling_price' => 'float',
+        'cost_price' => 'float',
+        'crossed_price' => 'float',
+    ];
 }
