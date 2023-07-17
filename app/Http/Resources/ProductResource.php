@@ -27,7 +27,8 @@ class ProductResource extends JsonResource
             'category' => $this->whenLoaded('category', new CategoryResource($this->category)),
             'options' => $this->whenLoaded('options', OptionResource::collection($this->options)),
             'variants' => $this->whenLoaded('variants', VariantResource::collection($this->variants)),
-            'product_images' => $this->whenLoaded('product_images',  $this->product_images->pluck('image')->toArray()),
+            'product_images' => $this->whenLoaded('product_images', ProductImageResource::collection($this->product_images)),
+            'created_at' => $this->created_at->format('M d, Y'),
         ];
     }
 }
