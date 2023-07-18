@@ -21,11 +21,11 @@ class StoreRepository
 
     public function getStoreById($id)
     {
-        return $this->store->findOrFail($id);
+        return $this->store->findOrFail($id)->load('storeCategory', 'setting');
     }
 
     public function getStores()
     {
-        return $this->store->with('storeCategory')->get();
+        return $this->store->with('storeCategory', 'setting')->get();
     }
 }
