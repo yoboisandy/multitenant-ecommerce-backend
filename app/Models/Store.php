@@ -26,4 +26,9 @@ class Store extends Model
     {
         return $this->belongsTo(StoreCategory::class);
     }
+
+    public function setting()
+    {
+        return $this->hasOne(Setting::class);
+    }
 }
