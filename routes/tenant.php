@@ -36,6 +36,11 @@ Route::group([
         Route::get('me', [AuthController::class, 'me']);
 
         Route::middleware('role:owner')->group(function () {
+            // store
+            Route::get('get-current-store', [\App\Http\Controllers\StoreController::class, 'getCurrentStore']);
+            Route::put('/stores', [\App\Http\Controllers\StoreController::class, 'updateStore']);
+
+            // category
             Route::post('categories', [\App\Http\Controllers\CategoryController::class, 'store']);
             Route::put('categories/{category}', [\App\Http\Controllers\CategoryController::class, 'update']);
             Route::delete('categories/{category}', [\App\Http\Controllers\CategoryController::class, 'destroy']);

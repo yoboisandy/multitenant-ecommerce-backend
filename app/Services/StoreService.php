@@ -94,4 +94,9 @@ class StoreService extends BaseService
 
         return $stores;
     }
+
+    public function updateStore($id, $data)
+    {
+        return $this->storeRepository->updateStore($id, $data);
+    }
 }

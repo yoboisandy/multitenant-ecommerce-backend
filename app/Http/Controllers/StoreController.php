@@ -43,4 +43,25 @@ class StoreController extends Controller
 
         return ApiResponse::success(AdminStoreResource::collection($stores));
     }
+
+    public function getCurrentStore()
+    {
+        $id = tenant('store_id');
+        $store = tenancy()->central(function () use ($id) {
+            return $this->storeService->getStoreById($id);
+        });
+
+        return ApiResponse::success(new StoreResource($store));
+    }
+
+    public function updateStore(Request $request)
+    {
+        $id = tenant('store_id');
+
+        $store = tenancy()->central(function () use ($id, $request) {
+            return $this->storeService->updateStore($id, $request->all());
+        });
+
+        return ApiResponse::success(new StoreResource($store), "Store updated successfully.");
+    }
 }

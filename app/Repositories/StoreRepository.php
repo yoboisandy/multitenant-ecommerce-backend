@@ -19,6 +19,18 @@ class StoreRepository
         return $this->store->create($data);
     }
 
+    public function updateStore($id, $data)
+    {
+        $store = $this->store->findOrFail($id);
+        $store->update($data);
+        if ($store->setting) {
+            $store->setting()->update($data['setting']);
+        } else {
+            $store->setting()->create($data['setting']);
+        }
+        return $store->load('setting');
+    }
+
     public function getStoreById($id)
     {
         return $this->store->findOrFail($id)->load('storeCategory', 'setting');
