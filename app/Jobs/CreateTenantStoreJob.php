@@ -12,7 +12,6 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\DB;
 
 class CreateTenantStoreJob implements ShouldQueue
 {
@@ -38,6 +37,7 @@ class CreateTenantStoreJob implements ShouldQueue
                 'plan' => 'free',
                 'ready' => false,
                 'store_name' => $this->store->store_name,
+                'store_id' => $this->store->id,
             ]);
 
             [$protocol, $domain] = explode('://', config('app.frontend_url'));
