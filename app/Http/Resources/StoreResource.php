@@ -20,8 +20,9 @@ class StoreResource extends JsonResource
             'email' => $this->email,
             'phone' => $this->phone,
             'store_name' => $this->store_name,
+            'store_category_id' => $this->store_category_id,
             'store_category' => $this->whenLoaded('storeCategory', $this->storeCategory->name),
-            'setting' =>  $this->whenLoaded('setting', $this->setting),
+            'setting' =>  $this->whenLoaded('setting', new SettingResource($this->setting)),
             'subdomain' => $this->subdomain,
             'created_at' => $this->created_at->format('Y-m-d'),
         ];
