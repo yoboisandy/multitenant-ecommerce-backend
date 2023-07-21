@@ -31,6 +31,8 @@ Route::group([
     // public routes
     Route::post('/auth/login', [AuthController::class, 'login']);
     Route::get('categories', [\App\Http\Controllers\CategoryController::class, 'index']);
+    Route::get('configs', [AuthController::class, 'getConfigs']);
+
     Route::middleware('auth:sanctum')->group(function () {
         Route::post('/auth/logout', [AuthController::class, 'logout']);
         Route::get('me', [AuthController::class, 'me']);

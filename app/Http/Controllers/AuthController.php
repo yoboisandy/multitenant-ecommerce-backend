@@ -33,4 +33,9 @@ class AuthController extends Controller
         $user = $this->userService->getUserById(Auth::id());
         return ApiResponse::success($user);
     }
+
+    public function getConfigs()
+    {
+        return ApiResponse::success($this->authService->getConfigs());
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Http\Resources\StoreResource;
 use App\Models\User;
 use Error;
 use Exception;
@@ -9,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthService extends BaseService
 {
-    public function __construct(public UserService $userService)
+    public function __construct(public UserService $userService, public StoreService $storeService)
     {
         //
     }
@@ -34,5 +35,20 @@ class AuthService extends BaseService
     {
         $user = $this->userService->getUserById(Auth::id());
         $this->userService->deleteToken($user);
+    }
+
+    public function getConfigs()
+    {
+        if (tenant()) {
+            $storeId = tenant('store_id');
+            $store = tenancy()->central(function ()  use ($storeId) {
+                return new StoreResource($this->storeService->getStoreById($storeId));
+            });
+        }
+        $configs = [
+            "isTenant" => tenant() ? true : false,
+            "store" => $store ?? null,
+        ];
+        return $configs;
     }
 }
