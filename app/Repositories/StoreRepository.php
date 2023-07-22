@@ -16,7 +16,12 @@ class StoreRepository
     public function createStore($data)
     {
         $data['password'] = bcrypt($data['password']);
-        return $this->store->create($data);
+        $store = $this->store->create($data);
+
+        $store->setting()->create($data['setting'] ?? []);
+        $store->customization()->create($data['customization'] ?? []);
+
+        return $store->load('setting', 'customization');
     }
 
     public function updateStore($id, $data)
@@ -26,9 +31,18 @@ class StoreRepository
         if ($store->setting) {
             $store->setting()->update($data['setting']);
         } else {
-            $store->setting()->create($data['setting']);
+            $store->setting()->create($data['setting'] ?? []);
         }
-        return $store->load('setting');
+
+        if ($store->customization) {
+            if (isset($data['customization'])) {
+                $store->customization()->update($data['customization']);
+            }
+        } else {
+            $store->customization()->create($data['customization'] ?? []);
+        }
+
+        return $store->load('setting', 'customization');
     }
 
     public function getStoreById($id)
