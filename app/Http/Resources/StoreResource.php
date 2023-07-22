@@ -23,6 +23,7 @@ class StoreResource extends JsonResource
             'store_category_id' => $this->store_category_id,
             'store_category' => $this->whenLoaded('storeCategory', $this->storeCategory->name),
             'setting' =>  $this->whenLoaded('setting', new SettingResource($this->setting)),
+            'customization' => $this->whenLoaded('customization', new CustomizationResource($this->customization)),
             'subdomain' => $this->subdomain,
             'created_at' => $this->created_at->format('Y-m-d'),
         ];

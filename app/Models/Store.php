@@ -31,4 +31,9 @@ class Store extends Model
     {
         return $this->hasOne(Setting::class);
     }
+
+    public function customization()
+    {
+        return $this->hasOne(Customization::class);
+    }
 }
