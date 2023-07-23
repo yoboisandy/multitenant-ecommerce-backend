@@ -48,6 +48,12 @@ class StoreRepository
                 if (isset($data['customization']['hero_image'])) {
                     $data['customization']['hero_image'] = ImageService::updateImage($data['customization']['hero_image'], "store_customization_hero_image", $store->customization?->hero_image ?? null);
                 }
+                if (isset($data['customization']['ad1_image'])) {
+                    $data['customization']['ad1_image'] = ImageService::updateImage($data['customization']['ad1_image'], "store_customization_ad1_image", $store->customization?->ad1_image ?? null);
+                }
+                if (isset($data['customization']['ad2_image'])) {
+                    $data['customization']['ad2_image'] = ImageService::updateImage($data['customization']['ad2_image'], "store_customization_ad2_image", $store->customization?->ad2_image ?? null);
+                }
                 $store->customization()->update($data['customization']);
             }
         } else {

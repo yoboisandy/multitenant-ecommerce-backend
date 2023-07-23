@@ -29,6 +29,11 @@ class CustomizationResource extends JsonResource
             "selected_navbar" => $this->selected_navbar,
             "topbar_text" => $this->topbar_text,
             "topbar_url" => $this->topbar_url,
+            "ad1_image" => $this->ad1_image,
+            "ad1_url" => $this->ad1_url,
+            "ad2_image" => $this->ad2_image,
+            "ad2_url" => $this->ad2_url,
+            "youtube_video" => $this->youtube_video,
         ];
     }
 }

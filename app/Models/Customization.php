@@ -23,5 +23,9 @@ class Customization extends Model
         'selected_navbar',
         'topbar_text',
         'topbar_url',
+        'ad1_image',
+        'ad1_url',
+        'ad2_image',
+        'ad2_url',
     ];
 }
