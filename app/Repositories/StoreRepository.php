@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Store;
+use App\Services\ImageService;
 
 class StoreRepository
 {
@@ -29,13 +30,24 @@ class StoreRepository
         $store = $this->store->findOrFail($id);
         $store->update($data);
         if ($store->setting) {
-            $store->setting()->update($data['setting']);
+            if (isset($data['setting'])) {
+                $store->setting()->update($data['setting']);
+            }
         } else {
             $store->setting()->create($data['setting'] ?? []);
         }
 
         if ($store->customization) {
             if (isset($data['customization'])) {
+                if (isset($data['customization']['logo'])) {
+                    $data['customization']['logo'] = ImageService::updateImage($data['customization']['logo'], "store_customization_logo", $store->customization?->logo ?? null);
+                }
+                if (isset($data['customization']['favicon'])) {
+                    $data['customization']['favicon'] = ImageService::updateImage($data['customization']['favicon'], "store_customization_favicon", $store->customization?->favicon ?? null);
+                }
+                if (isset($data['customization']['hero_image'])) {
+                    $data['customization']['hero_image'] = ImageService::updateImage($data['customization']['hero_image'], "store_customization_hero_image", $store->customization?->hero_image ?? null);
+                }
                 $store->customization()->update($data['customization']);
             }
         } else {
