@@ -80,4 +80,9 @@ class ProductService extends BaseService
             }
         );
     }
+
+    public function getNewArrivals($limit)
+    {
+        return $this->productRepository->getNewArrivals($limit);
+    }
 }

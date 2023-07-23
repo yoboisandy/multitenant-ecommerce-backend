@@ -56,4 +56,9 @@ class ProductRepository
         $product->delete();
         return $data;
     }
+
+    public function getNewArrivals($limit)
+    {
+        return $this->product->with('options', 'variants', 'product_images', 'category')->where('status', 'active')->latest()->limit($limit)->get();
+    }
 }
