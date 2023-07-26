@@ -34,4 +34,9 @@ class ProductController extends Controller
     {
         return ApiResponse::success($this->productService->deleteProduct($id), "Product deleted successfully.");
     }
+
+    public function getProductByCategory($id)
+    {
+        return ApiResponse::success(ProductResource::collection($this->productService->getProductByCategory($id)));
+    }
 }

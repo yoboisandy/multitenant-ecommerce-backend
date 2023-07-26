@@ -61,4 +61,9 @@ class ProductRepository
     {
         return $this->product->with('options', 'variants', 'product_images', 'category')->where('status', 'active')->latest()->limit($limit)->get();
     }
+
+    public function getProductByCategory($category_id)
+    {
+        return $this->product->with('options', 'variants', 'product_images', 'category')->where('category_id', $category_id)->where("status", "active")->latest()->get();
+    }
 }

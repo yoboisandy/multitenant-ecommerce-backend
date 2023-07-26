@@ -85,4 +85,9 @@ class ProductService extends BaseService
     {
         return $this->productRepository->getNewArrivals($limit);
     }
+
+    public function getProductByCategory($category_id)
+    {
+        return $this->productRepository->getProductByCategory($category_id);
+    }
 }
