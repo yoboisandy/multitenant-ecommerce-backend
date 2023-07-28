@@ -52,6 +52,7 @@ class AuthService extends BaseService
             $store = tenancy()->central(function ()  use ($storeId) {
                 return new StoreResource($this->storeService->getStoreById($storeId));
             });
+            $products = $this->productService->getAllProducts("active");
             $categories = CategoryResource::collection($this->categoryService->getCategories());
             $newArrivals = ProductResource::collection($this->productService->getNewArrivals(10));
             $trendingProducts = [];
@@ -59,6 +60,7 @@ class AuthService extends BaseService
         $configs = [
             "isTenant" => tenant() ? true : false,
             "store" => $store ?? null,
+            "products" => $products ?? [],
             "categories" => $categories ?? [],
             "newArrivals" => $newArrivals ?? [],
             "trendingProducts" => $trendingProducts ?? [],
