@@ -3,6 +3,8 @@
 declare(strict_types=1);
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 use Spatie\Permission\Contracts\Role;
 use Stancl\Tenancy\Middleware\InitializeTenancyByDomain;
@@ -27,15 +29,22 @@ Route::group([
         InitializeTenancyByPath::class,
         'api',
     ]
-], function () { 
+], function () {
     // public routes
-    Route::post('/auth/login', [AuthController::class, 'login']);
+    Route::post('/auth/login', [\App\Http\Controllers\AuthController::class, 'login']);
     Route::get('categories', [\App\Http\Controllers\CategoryController::class, 'index']);
-    Route::get('configs', [AuthController::class, 'getConfigs']);
+    Route::get(
+        'configs',
+        [\App\Http\Controllers\AuthController::class, 'getConfigs']
+    );
+    Route::post(
+        'orders',
+        [\App\Http\Controllers\OrderController::class, 'createOrder']
+    );
 
     Route::middleware('auth:sanctum')->group(function () {
-        Route::post('/auth/logout', [AuthController::class, 'logout']);
-        Route::get('me', [AuthController::class, 'me']);
+        Route::post('/auth/logout', [\App\Http\Controllers\AuthController::class, 'logout']);
+        Route::get('me', [\App\Http\Controllers\AuthController::class, 'me']);
 
         Route::middleware('role:owner')->group(function () {
             // store

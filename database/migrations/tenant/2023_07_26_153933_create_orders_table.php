@@ -13,15 +13,23 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('order_number')->default(1000)->autoIncrement();
+            $table->integer('order_number');
             $table->string('customer_name');
             $table->string('customer_email');
             $table->string('customer_phone');
             $table->string('customer_address_province');
-            $table->string('customer_address_district');
             $table->string('customer_address_city');
-            $table->string('customer_address_nearby_landmark');
-
+            $table->string('customer_address_area');
+            $table->string('customer_address_nearby_landmark')->nullable();
+            $table->decimal('total_price');
+            $table->decimal('total_discount')->nullable();
+            $table->integer('total_quantity');
+            $table->string('order_note')->nullable();
+            $table->string('payment_method')->default('cod');
+            $table->decimal('delivery_charge')->default(0);
+            $table->string('payment_status')->default('unpaid');
+            $table->string('order_status')->default('pending');
+            $table->json('products');
             $table->timestamps();
         });
     }
