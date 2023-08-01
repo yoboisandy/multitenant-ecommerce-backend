@@ -22,4 +22,9 @@ class OrderRepository
     {
         return $this->order->create($data);
     }
+
+    public function getAllOrders()
+    {
+        return $this->order->all();
+    }
 }

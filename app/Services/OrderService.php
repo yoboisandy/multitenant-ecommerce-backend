@@ -49,4 +49,9 @@ class OrderService extends BaseService
             "price" => $data['total_price'],
         ];
     }
+
+    public function getAllOrders()
+    {
+        return $this->orderRepository->getAllOrders();
+    }
 }
