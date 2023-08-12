@@ -54,4 +54,9 @@ class OrderService extends BaseService
     {
         return $this->orderRepository->getAllOrders();
     }
+
+    public function updateOrder($data, $order)
+    {
+        return $this->orderRepository->update($data, $order);
+    }
 }

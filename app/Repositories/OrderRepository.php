@@ -27,4 +27,11 @@ class OrderRepository
     {
         return $this->order->all();
     }
+
+    public function update(array $data, Order $order)
+    {
+        $order->update($data);
+
+        return $order;
+    }
 }
