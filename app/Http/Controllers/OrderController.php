@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\OrderRequest;
 use App\Http\Resources\OrderResource;
 use App\Libs\ApiResponse;
+use App\Models\Order;
 use App\Services\OrderService;
 use Illuminate\Http\Request;
 
@@ -23,5 +24,10 @@ class OrderController extends Controller
     public function getAllOrders()
     {
         return ApiResponse::success(OrderResource::collection($this->orderService->getAllOrders()));
+    }
+
+    public function getOrderById(Order $order)
+    {
+        return ApiResponse::success(new OrderResource($order));
     }
 }

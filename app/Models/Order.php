@@ -30,6 +30,13 @@ class Order extends Model
         'products',
     ];
 
+    // cast
+    protected $casts = [
+        'delivery_charge' => 'float',
+        'total_price' => 'float',
+        'total_discount' => 'float',
+    ];
+
     public function setProductsAttribute($value)
     {
         $this->attributes['products'] = json_encode($value);

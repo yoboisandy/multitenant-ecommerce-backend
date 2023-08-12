@@ -19,6 +19,13 @@ class OrderResource extends JsonResource
             'id' => $this->id,
             'order_number' => $this->order_number,
             'customer_name' => $this->customer_name,
+            'customer_email' => $this->customer_email,
+            'customer_phone' => $this->customer_phone,
+            'customer_address_province' => $this->customer_address_province,
+            'customer_address_city' => $this->customer_address_city,
+            'customer_address_area' => $this->customer_address_area,
+            'customer_address_nearby_landmark' => $this->customer_address_nearby_landmark,
+            'order_note' => $this->order_note,
             'total_price' => $this->total_price,
             'total_quantity' => $this->total_quantity,
             'delivery_charge' => $this->delivery_charge,
@@ -26,7 +33,6 @@ class OrderResource extends JsonResource
             'payment_status' => $this->payment_status,
             'payment_method' => $this->payment_method,
             'products' => $this->products,
-            // format 22 jan 2021 6:00 PM
             'created_at' => Carbon::parse($this->created_at)->format('d M Y h:i A'),
         ];
     }
