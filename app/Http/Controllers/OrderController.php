@@ -33,7 +33,7 @@ class OrderController extends Controller
 
     public function updateOrder(Request $request, Order $order)
     {
-        $data = $request->only(['status', 'payment_status']);
+        $data = $request->only(['order_status', 'payment_status']);
         return ApiResponse::success(new OrderResource($this->orderService->updateOrder($data, $order)), "Order updated successfully.");
     }
 }
