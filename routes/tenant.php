@@ -67,6 +67,9 @@ Route::group([
             Route::get('orders', [\App\Http\Controllers\OrderController::class, 'getAllOrders']);
             Route::get('orders/{order}', [\App\Http\Controllers\OrderController::class, 'getOrderById']);
             Route::put('orders/{order}', [\App\Http\Controllers\OrderController::class, 'updateOrder']);
+
+            // anlytics
+            Route::get('dashboard/analytics', [\App\Http\Controllers\AnalyticsController::class, 'getDashboardStats']);
         });
     });
 });
