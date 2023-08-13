@@ -7,6 +7,10 @@
 </head>
 
 <body style="font-family: Arial, sans-serif; font-size: 14px">
+    @php
+        $tenant = tenant('store_id');
+        $logo = (tenant() ? tenancy()->central(fn() => App\Models\Store::find($tenant)->customization?->logo) : asset('assets/images/whiteLogo.svg')) ?? '/assets/images/whiteLogo.svg';
+    @endphp
     <table cellpadding="0" cellspacing="0" border="0" style="margin: 0 auto; width: 600px; max-width: 100%">
         <tr>
             <td>
@@ -24,7 +28,7 @@
                             <table cellpadding="0" cellspacing="0" border="0" width="100%">
                                 <tr>
                                     <td style="text-align: center; padding-bottom: 20px">
-                                        <img src="{{ asset('assets/images/whiteLogo.svg') }}" alt="Logo"
+                                        <img src="{{ $logo }}" alt="Logo"
                                             style="
                           display: block;
                           margin: 0 auto;
@@ -33,6 +37,7 @@
                         " />
                                     </td>
                                 </tr>
+                            @if(!tenant())
                                 <tr>
                                     <td
                                         style="
@@ -47,6 +52,7 @@
                                         </p>
                                     </td>
                                 </tr>
+                            @endif
                                 <tr>
                                     <td
                                         style="
@@ -62,7 +68,9 @@
                                         <table cellpadding="0" cellspacing="0" border="0" width="100%">
                                             @yield('content')
                                             <tr>
-                                                <td>
+                                                <td
+                                                    style="
+                                                padding-top: 15px;">
                                                     <div style="height: 1px; background-color: #343261" />
                                                 </td>
                                             </tr>
