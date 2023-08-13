@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class AnalyticsController extends Controller
@@ -34,7 +35,7 @@ class AnalyticsController extends Controller
         // weekly sales of this week
         $weeklySales = Order::selectRaw('sum(total_price) as total, DAYNAME(created_at) as day')
             ->whereNotIn('order_status', ['cancelled', 'returned'])
-            ->whereBetween('created_at', [date('Y-m-d', strtotime('monday this week')), date('Y-m-d', strtotime('sunday this week'))])
+            ->whereBetween('created_at', [Carbon::now()->subDays(7)->startOfDay(), Carbon::now()->endOfDay()])
             ->groupBy('day')
             ->orderBy('day')
             ->get();
