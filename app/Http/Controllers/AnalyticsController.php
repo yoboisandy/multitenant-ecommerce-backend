@@ -3,11 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Services\OrderService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class AnalyticsController extends Controller
 {
+    public function __construct(public OrderService $orderService)
+    {
+    }
     public function getDashboardStats(Request $request)
     {
         $totalRevenue = Order::whereNotIn('order_status', ['cancelled', 'returned'])
@@ -60,6 +64,7 @@ class AnalyticsController extends Controller
                 'avgOrderValue' => floor($avgOrderValue),
                 'hourlyOrders' => $hourlyOrders,
                 'weeklySales' => $weeklySales,
+                'topProducts' => $this->orderService->getTrendingProducts()
             ]
         ]);
     }
