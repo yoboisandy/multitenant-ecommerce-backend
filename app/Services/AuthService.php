@@ -17,7 +17,8 @@ class AuthService extends BaseService
         public UserService $userService,
         public StoreService $storeService,
         public CategoryService $categoryService,
-        public ProductService $productService
+        public ProductService $productService,
+        public OrderService $orderService
     )
     {
         //
@@ -55,7 +56,7 @@ class AuthService extends BaseService
             $products = $this->productService->getAllProducts("active");
             $categories = CategoryResource::collection($this->categoryService->getCategories());
             $newArrivals = ProductResource::collection($this->productService->getNewArrivals(10));
-            $trendingProducts = [];
+            $trendingProducts = $this->orderService->getTrendingProducts()->pluck('product');
         }
         $configs = [
             "isTenant" => tenant() ? true : false,

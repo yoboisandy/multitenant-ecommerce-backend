@@ -51,6 +51,8 @@ class OrderService extends BaseService
                     'order_id' => $order->id,
                     'product_id' => $product['product']->id,
                     'variant_id' => $product['variant']?->id,
+                    'quantity' => $product['quantity'],
+                    'price' => $product['price'],
                 ]);
             }
 
@@ -69,5 +71,10 @@ class OrderService extends BaseService
     public function updateOrder($data, $order)
     {
         return $this->orderRepository->update($data, $order);
+    }
+
+    public function getTrendingProducts($from = null, $to = null)
+    {
+        return $this->orderRepository->getMostOrderedProductsBetween($from, $to);
     }
 }
