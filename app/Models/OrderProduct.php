@@ -13,7 +13,14 @@ class OrderProduct extends Model
         'order_id',
         'product_id',
         'variant_id',
+        'quantity',
+        'price',
     ];
 
     protected $table = 'order_product';
+
+    public function order()
+    {
+        return $this->belongsTo(Order::class);
+    }
 }
