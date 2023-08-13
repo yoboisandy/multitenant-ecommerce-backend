@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Http\Resources\ProductResource;
+use App\Jobs\OrderPlacedJob;
 use App\Models\OrderProduct;
 use App\Repositories\OrderRepository;
 
@@ -55,6 +56,8 @@ class OrderService extends BaseService
                     'price' => $product['price'],
                 ]);
             }
+
+            dispatch(new OrderPlacedJob($order));
 
             return [
                 "quantity" => $data['total_quantity'],
