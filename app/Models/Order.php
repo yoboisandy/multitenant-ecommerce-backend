@@ -46,4 +46,9 @@ class Order extends Model
     {
         return json_decode($value);
     }
+
+    public function orderProducts()
+    {
+        return $this->hasMany(OrderProduct::class);
+    }
 }
