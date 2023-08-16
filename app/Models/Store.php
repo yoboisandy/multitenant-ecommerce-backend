@@ -19,6 +19,8 @@ class Store extends Model
         'store_category_id',
         'subdomain',
         'email_token',
+        'plan',
+        'expiry_date',
         'email_verified_at',
     ];
 

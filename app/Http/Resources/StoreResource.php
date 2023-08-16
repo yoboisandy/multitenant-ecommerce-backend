@@ -25,6 +25,8 @@ class StoreResource extends JsonResource
             'setting' =>  $this->whenLoaded('setting', new SettingResource($this->setting)),
             'customization' => $this->whenLoaded('customization', new CustomizationResource($this->customization)),
             'subdomain' => $this->subdomain,
+            'plan' => $this->plan,
+            'expiry_date' => $this->expiry_date,
             'created_at' => $this->created_at->format('Y-m-d'),
         ];
     }
