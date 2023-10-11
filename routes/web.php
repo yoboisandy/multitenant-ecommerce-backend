@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('stripe-webhook', function (Request $request) {
+    logger('Stripe webhook payload:', $request->all());
+    return response()->json(['message' => 'success']);
 });
