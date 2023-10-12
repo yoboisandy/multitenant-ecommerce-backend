@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Store;
+use App\Models\Tenant;
 use App\Services\ImageService;
 
 class StoreRepository
@@ -71,5 +72,20 @@ class StoreRepository
     public function getStores()
     {
         return $this->store->with('storeCategory', 'setting')->get();
+    }
+
+    public function updateStorePlan($id, $plan)
+    {
+        $store = $this->store->findOrFail($id);
+        $store->update([
+            'plan' => $plan,
+        ]);
+
+        $tenant = Tenant::where('id', $store->subdomain)->first();
+        $tenant->update([
+            'plan' => $plan,
+        ]);
+
+        return $store;
     }
 }

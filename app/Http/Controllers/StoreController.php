@@ -64,4 +64,15 @@ class StoreController extends Controller
 
         return ApiResponse::success(new StoreResource($store), "Store updated successfully.");
     }
+
+    public function updateStorePlan(Request $request, Store $store)
+    {
+        $request->validate([
+            'plan' => 'required|in:free,paid',
+        ]);
+
+        $store = $this->storeService->updateStorePlan($store->id, $request->plan);
+
+        return ApiResponse::success(new StoreResource($store), "Store plan updated successfully.");
+    }
 }
