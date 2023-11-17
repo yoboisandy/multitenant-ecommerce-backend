@@ -13,7 +13,7 @@ jobs:
       - name: 📂 Sync folders and files to the server
         uses: SamKirkland/FTP-Deploy-Action@4.3.3
         with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
+          server: ftp.bpnpdl.com.np
+          username: mecomm@sandeep-sharma.me
           password: ${{ secrets.FTP_PASSWORD }}
           server-dir: /sandeep-sharma.me/
