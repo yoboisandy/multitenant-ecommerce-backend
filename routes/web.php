@@ -19,6 +19,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/welcome', function () {
+    return view('welcome');
+});
+
 Route::get('stripe-webhook', function (Request $request) {
     logger('Stripe webhook payload:', $request->all());
     return response()->json(['message' => 'success']);
