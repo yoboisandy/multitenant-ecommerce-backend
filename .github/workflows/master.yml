@@ -16,4 +16,3 @@ jobs:
           server: ftp.bpnpdl.com.np
           username: mecomm@sandeep-sharma.me
           password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: /sandeep-sharma.me/
