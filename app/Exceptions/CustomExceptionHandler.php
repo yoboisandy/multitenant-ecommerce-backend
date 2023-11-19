@@ -11,6 +11,9 @@ class CustomExceptionHandler extends ExceptionHandler
 {
     public function render($request, Throwable $exception)
     {
+        if (!$request->expectsJson()) {
+            return parent::render($request, $exception);
+        }
         $message = $exception->getMessage() ?? 'Internal Server Error';
         // check if the exception has a getCode() method
         $code = method_exists($exception, 'getStatusCode') ? $exception->getStatusCode() : 500;
@@ -35,7 +38,5 @@ class CustomExceptionHandler extends ExceptionHandler
         }
 
         return response()->json($response, $code ?? 500);
-
-        // return  $exception;
     }
 }
