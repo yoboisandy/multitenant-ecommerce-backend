@@ -18,6 +18,11 @@ class ImageService
         $data = base64_decode($data);
         $extension = explode('/', $type)[1];
 
+        // Handle SVG file extension
+        if ($extension === 'svg+xml') {
+            $extension = 'svg';
+        }
+
         $fileName = time() . Str::random(10) . '.' . $extension;
 
         Storage::disk('public')->put($path . '/' . $fileName, $data);
